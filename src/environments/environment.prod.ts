@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'http://a.itying.com',
+  ignoreToken: ['login', 'logout']
 };
