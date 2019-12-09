@@ -4,7 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration=prod",
+    "dev": "ng build --configuration=development",
+    "uat": "ng build --configuration=uat",
+    "fat": "ng build --configuration=fat",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

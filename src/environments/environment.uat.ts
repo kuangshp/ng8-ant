@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
-  baseUrl: 'http://pro.com',
+  production: false,
+  baseUrl: 'http://uat.com',
   ignoreToken: ['login', 'logout']
 };
