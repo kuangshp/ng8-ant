@@ -25,6 +25,12 @@
       ],
       "@store/*": [
         "src/app/store/*"
+      ],
+      "@utils": [
+        "src/app/utils"
+      ],
+      "@utils/*": [
+        "src/app/utils/*"
       ]
     }
   },

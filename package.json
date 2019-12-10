@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=prod",
+    "build": "ng build --configuration=production",
     "dev": "ng build --configuration=development",
     "uat": "ng build --configuration=uat",
     "fat": "ng build --configuration=fat",

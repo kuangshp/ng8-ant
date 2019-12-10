@@ -11,6 +11,7 @@ import { tap } from 'rxjs/operators';
 
 // 获取环境配置项目
 import { environment } from './../../environments/environment';
+import { storage } from '@utils';
 
 @Injectable()
 export class ParamInterceptor implements HttpInterceptor {
@@ -26,14 +27,19 @@ export class ParamInterceptor implements HttpInterceptor {
     if (this.ignoreToken(url)) {
       req = req.clone({ url });
     } else {
-      // 设置请求头
-      req = req.clone({
-        url,
-        headers: req.headers
-          .set('token', '11221')
-          .set('token1', 'aaa')
-          .set('Content-Type', 'application/json; charset=UTF-8')
-      });
+      // 如果本地获取不到token就重定向到登录页面
+      if (storage.getItem('token')) {
+        console.log('没token');
+      } else {
+        // 设置请求头
+        req = req.clone({
+          url,
+          headers: req.headers
+            .set('token', '11221')
+            .set('token1', 'aaa')
+            .set('Content-Type', 'application/json; charset=UTF-8')
+        });
+      }
     }
 
     return next.handle(req).pipe(
