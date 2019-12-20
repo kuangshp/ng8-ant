@@ -1,5 +1,12 @@
 <div class="header">
-  <!--  -->
-  头部
-  <!-- </nz-header> -->
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="3">
+      <div class="logo"></div>
+    </div>
+    <div nz-col nzSpan="3">
+      <div>
+        <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="toggleMenu()"></i>
+      </div>
+    </div>
+  </div>
 </div>
