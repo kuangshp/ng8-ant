@@ -44,12 +44,10 @@
     <!-- 右侧内容区域开始 -->
     <nz-layout>
       <nz-content>
-        <!-- <nz-breadcrumb>
-          <nz-breadcrumb-item>User</nz-breadcrumb-item>
-          <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
-        </nz-breadcrumb> -->
+        <!-- 选项卡导航 -->
+        <app-tabset></app-tabset>
         <div class="inner-content">
-          Bill is a cat.
+          <router-outlet [ngStyle]="{'height':'100%'}"></router-outlet>
         </div>
       </nz-content>
       <!-- 右侧内容区域结束 -->
