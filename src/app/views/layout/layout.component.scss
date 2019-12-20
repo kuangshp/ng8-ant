@@ -8,8 +8,14 @@
   nz-content {
     margin: 0 16px;
   }
-  nz-breadcrumb {
-    margin: 16px 0;
+  nz-sider{
+    height: 100vh;
+    background: #fff;
+    .ant-menu-item {
+      a {
+        display: inline;
+      }
+    }
   }
   .inner-content {
     padding: 24px;
