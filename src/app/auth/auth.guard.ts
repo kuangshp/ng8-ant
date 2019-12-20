@@ -7,11 +7,11 @@ import { authToken } from '../config';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor (private router: Router) { }
+  constructor(private router: Router) { }
   /**
    * 导航需要进入的页面
-   * @param next
-   * @param state
+   * @param next 下一个
+   * @param state 当前的
    */
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -22,8 +22,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
   /**
    * 导航需要进入的子路由
-   * @param next
-   * @param state
+   * @param next 下一个
+   * @param state 当前的
    */
   canActivateChild(
     next: ActivatedRouteSnapshot,
@@ -36,7 +36,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
    */
   private checkLogin(): Observable<boolean> | boolean {
     if (storage.getItem(authToken)) {
-      return of(true)
+      return of(true);
     } else {
       this.router.navigateByUrl('/login');
     }

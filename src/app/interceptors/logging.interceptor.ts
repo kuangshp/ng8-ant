@@ -13,7 +13,7 @@ import { LoggerService } from '../service/logger.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoggingInterceptor implements HttpInterceptor {
-  constructor (private loggerService: LoggerService) { }
+  constructor(private loggerService: LoggerService) { }
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler

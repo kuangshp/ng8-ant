@@ -11,5 +11,5 @@ export class LoggerService {
   error(msg: string, obj = {}): void {
     console.error(msg, obj);
   }
-  constructor () { }
+  constructor() { }
 }

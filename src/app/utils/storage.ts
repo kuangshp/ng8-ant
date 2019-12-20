@@ -5,14 +5,14 @@
  * @Email: 332904234@qq.com
  * @Company:
  * @Date: 2019-08-16 10:49:46
- * @LastEditors: 水痕
- * @LastEditTime: 2019-12-10 08:51:07
+ * @LastEditors  : 水痕
+ * @LastEditTime : 2019-12-20 11:21:32
  */
 
 class LocalStorage {
   private prefix: string;
 
-  constructor (prefix: string = 'web') {
+  constructor(prefix: string = 'web') {
     this.prefix = prefix;
   }
 
@@ -21,8 +21,7 @@ class LocalStorage {
    * @Date: 2019-12-09 17:44:17
    * @LastEditors: 水痕
    * @Description: 获取本地存储的方法
-   * @param {type}
-   * @return:
+   * @param key 当前的key
    */
   public getItem(key: string) {
     key = this.getKey(key);
@@ -48,10 +47,11 @@ class LocalStorage {
    * @Date: 2019-12-09 17:44:07
    * @LastEditors: 水痕
    * @Description: 设置存储
-   * @param {type}
-   * @return:
+   * @param key key的值
+   * @param value value值
+   * @param time 超时时间
    */
-  public setItem(key: string, value: string, time?: any) {
+  public setItem(key: string, value: string, time?: any): void {
     key = this.getKey(key);
     // 如果用户没传递时间进来就是一天
     try {
@@ -71,8 +71,7 @@ class LocalStorage {
    * @Date: 2019-12-09 17:43:54
    * @LastEditors: 水痕
    * @Description: 删除存储
-   * @param {type}
-   * @return:
+   * @param key key值
    */
   public removeItem(key: string): void {
     key = this.getKey(key);
@@ -87,7 +86,6 @@ class LocalStorage {
    * @Date: 2019-12-09 17:43:12
    * @LastEditors: 水痕
    * @Description: 清除本地存储的
-   * @param {type}
    * @return:
    */
   public clear(): void {
@@ -99,8 +97,7 @@ class LocalStorage {
    * @Date: 2019-12-09 17:44:31
    * @LastEditors: 水痕
    * @Description: 私有方法获取key
-   * @param {type}
-   * @return:
+   * @param key key值
    */
   private getKey(key: string): string {
     return `${this.prefix}:${key}`;

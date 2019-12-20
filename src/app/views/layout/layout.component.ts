@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  isCollapsed: boolean = false;
-  constructor () { }
+  isCollapsed = false;
+  constructor() { }
 
   ngOnInit() {
   }

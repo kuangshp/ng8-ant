@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'ng8-ant';
   public currentUrl() {
     console.log('点击了');
-    console.log(environment.baseUrl)
+    console.log(environment.baseUrl);
   }
 }

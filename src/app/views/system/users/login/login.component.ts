@@ -12,7 +12,7 @@ import { authToken } from '@app/config';
 })
 export class LoginComponent implements OnInit {
 
-  constructor (private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
   loginValidateForm: FormGroup;
 
 
@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
   // 登录事件
   submitForm({ value }: any, ev: Event): void {
     ev.preventDefault();
-    for (const i in this.loginValidateForm.controls) {
-      this.loginValidateForm.controls[i].markAsDirty();
-      this.loginValidateForm.controls[i].updateValueAndValidity();
-    }
+    // for (const i in this.loginValidateForm.controls) {
+    //   this.loginValidateForm.controls[i].markAsDirty();
+    //   this.loginValidateForm.controls[i].updateValueAndValidity();
+    // }
     console.log(value);
     storage.setItem(authToken, JSON.stringify(value));
     // 跳转到首页

@@ -9,7 +9,7 @@ interface IobjectType {
   providedIn: 'root'
 })
 export class RequestService {
-  constructor (private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   /**
    * 封装一个统一的get请求方法
