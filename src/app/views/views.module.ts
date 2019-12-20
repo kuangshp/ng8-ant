@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 
 import { ViewsRoutingModule } from './views-routing.module';
-import { SystemModule } from './system/system.module';
 import { LayoutModule } from './layout/layout.module';
-// import { HomeModule } from './home/home.module';
+import { ViewSharedModule } from './shared/view.shared.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     ViewsRoutingModule,
-    SystemModule,
+    ViewSharedModule,
     LayoutModule,
-    // HomeModule
   ]
 })
 export class ViewsModule { }

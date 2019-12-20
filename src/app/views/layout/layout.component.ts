@@ -19,7 +19,7 @@ export class LayoutComponent implements OnInit {
     })
   }
 
-  toggleMenu(): void {
-    this.store$.dispatch(toggleMenu())
+  select(a) {
+    console.log(a);
   }
 }

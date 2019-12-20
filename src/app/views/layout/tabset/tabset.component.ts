@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabset',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class TabsetComponent implements OnInit {
   public selectedIndex: number = 0;
   public activeTabs = [];
-  constructor () { }
+  constructor (private router: Router) { }
 
   ngOnInit() {
     if (this.activeTabs.length === 0) {
@@ -19,20 +20,16 @@ export class TabsetComponent implements OnInit {
         name: '首页',
         close: false,
         icon: 'home',
-        refresh: 'N',
-        content: {
-          ID: '0',
-          MENUID: 'HOME',
-          ROUTER: 'home',
-          MENUTYPE: 'INURL'
-        }
+        router: 'home',
       })
     }
   }
 
   // 选择菜单切换路由
-  public selectedTabMenu(tab: string): void {
-    console.log(tab);
+  public selectedTabMenu(tab: any): void {
+    console.log(tab, "???");
+    const { router } = tab;
+    this.router.navigateByUrl(router);
   }
 
   // 关闭菜单
