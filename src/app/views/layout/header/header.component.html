@@ -1,12 +1,11 @@
 <div class="header">
-  <div nz-row nzGutter="8">
-    <div nz-col nzSpan="3">
-      <div class="logo"></div>
-    </div>
-    <div nz-col nzSpan="3">
-      <div>
-        <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="toggleMenu()"></i>
-      </div>
-    </div>
+  <div class="logo">
+    <div class="log1" [hidden]="isCollapsed"></div>
+    <div class="log2" [hidden]="!isCollapsed"></div>
   </div>
+  <div class="menus">
+    <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="toggleMenu()"></i>
+  </div>
+  <div class="content"></div>
+  <div class="user-info"></div>
 </div>

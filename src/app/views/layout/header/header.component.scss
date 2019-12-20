@@ -1,21 +1,56 @@
 .header{
   height: 64px;
   width: 100vw;
-  background: #2680ca;
+  background: #1890ff;
+  display: flex;
+  flex-direction: row;
   .logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
-    width: 200px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .log1 {
+      width: 200px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .log2 {
+      width: 80px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+    }
   }
-  .trigger {
-    font-size: 18px;
+  .menus{
+    width: 50px;
+    height: 64px;
+    text-align: center;
     line-height: 64px;
-    padding: 0 24px;
-    cursor: pointer;
-    transition: color 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    .trigger {
+      color: #fff;
+      font-size: 24px;
+      width: 35px;
+      height: 35px;
+      padding: 5px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .trigger:hover {
+      background: #40a9ff;
+      color: #fff;
+    }
   }
-
-  .trigger:hover {
-    color: #1890ff;
+  .content{
+    flex:1;
+  }
+  .user-info{
+    width: 200px;
+    height: inherit;
+    background: #f00;
   }
 }
