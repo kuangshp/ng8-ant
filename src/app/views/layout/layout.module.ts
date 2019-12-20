@@ -5,12 +5,14 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LayoutComponent } from './layout.component';
 import { ContentComponent } from './content/content.component';
+import { SharedModule } from '@app/shared/shared.module';
 
 
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent, SidebarComponent, ContentComponent],
   imports: [
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    SharedModule,
   ],
 })
 export class LayoutModule { }
