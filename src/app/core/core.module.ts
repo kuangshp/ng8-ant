@@ -10,6 +10,7 @@ import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { AuthGuard } from '../auth/auth.guard';
 registerLocaleData(zh);
 
 @NgModule({
@@ -24,10 +25,10 @@ registerLocaleData(zh);
     AppRoutingModule,
   ],
   exports: [
+    AppRoutingModule,
     SharedModule,
-    AppRoutingModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [AuthGuard, { provide: NZ_I18N, useValue: zh_CN }],
 })
 export class CoreModule {
   constructor (@SkipSelf() @Optional() parentModule: CoreModule) {

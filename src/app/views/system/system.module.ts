@@ -9,7 +9,7 @@ import { UsersModule } from './users/users.module';
   declarations: [SystemComponent],
   imports: [
     SystemRoutingModule,
-    UsersModule
+    UsersModule,
   ]
 })
 export class SystemModule { }

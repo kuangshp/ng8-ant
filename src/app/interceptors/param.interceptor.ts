@@ -12,6 +12,7 @@ import { tap } from 'rxjs/operators';
 // 获取环境配置项目
 import { environment } from './../../environments/environment';
 import { storage } from '@utils';
+import { authToken } from '../config';
 
 @Injectable()
 export class ParamInterceptor implements HttpInterceptor {
@@ -28,7 +29,7 @@ export class ParamInterceptor implements HttpInterceptor {
       req = req.clone({ url });
     } else {
       // 如果本地获取不到token就重定向到登录页面
-      if (storage.getItem('token')) {
+      if (storage.getItem(authToken)) {
         console.log('没token');
       } else {
         // 设置请求头
