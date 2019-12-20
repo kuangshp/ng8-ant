@@ -43,9 +43,9 @@
     </nz-sider>
     <!-- 右侧内容区域开始 -->
     <nz-layout>
+      <!-- 选项卡导航 -->
+      <app-tabset></app-tabset>
       <nz-content>
-        <!-- 选项卡导航 -->
-        <app-tabset></app-tabset>
         <div class="inner-content">
           <router-outlet [ngStyle]="{'height':'100%'}"></router-outlet>
         </div>
