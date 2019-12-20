@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: width 0.3s;
     .log1 {
       width: 200px;
       height: 40px;
@@ -49,8 +50,31 @@
     flex:1;
   }
   .user-info{
-    width: 200px;
+    width: 60px;
     height: inherit;
-    background: #f00;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .ant-dropdown-trigger{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .user-info-avatar{
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      img {
+        width:inherit;
+        height:inherit;
+        vertical-align: baseline;
+        border-radius: 50%;
+      }
+    }
+    .down-icon{
+      color: #fff;
+      font-size:15px;
+    }
   }
 }
