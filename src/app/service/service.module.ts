@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { LoggerService } from './logger.service';
-import { RequestService } from './request.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { LoggerService } from './tools/logger/logger.service';
+import { RequestService } from './tools/request/request.service';
 import { ParamInterceptor } from '../interceptors/param.interceptor';
 import { LoggingInterceptor } from '../interceptors/logging.interceptor';
 

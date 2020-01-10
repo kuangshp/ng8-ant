@@ -9,7 +9,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { finalize, tap } from 'rxjs/operators';
-import { LoggerService } from '../service/logger.service';
+import { LoggerService } from '../service/tools/logger/logger.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoggingInterceptor implements HttpInterceptor {
