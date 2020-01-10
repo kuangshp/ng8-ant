@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { storage } from '@utils';
+import { storage } from '@app/utils';
 import { Router } from '@angular/router';
 import { authToken } from '@app/config';
 
@@ -12,7 +12,7 @@ import { authToken } from '@app/config';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor (private fb: FormBuilder, private router: Router) { }
   loginValidateForm: FormGroup;
 
 

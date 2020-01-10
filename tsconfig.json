@@ -20,24 +20,9 @@
     ],
     // 配置别名
     "paths": {
-      "@app": [
-        "src/app"
-      ],
       "@app/*": [
         "src/app/*"
       ],
-      "@store": [
-        "src/app/store"
-      ],
-      "@store/*": [
-        "src/app/store/*"
-      ],
-      "@utils": [
-        "src/app/utils"
-      ],
-      "@utils/*": [
-        "src/app/utils/*"
-      ]
     }
   },
   "angularCompilerOptions": {

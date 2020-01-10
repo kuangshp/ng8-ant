@@ -16,11 +16,11 @@
           <ul>
             <li nz-menu-item nzMatchRouter>
               <i nz-icon nzType="user"></i>
-              <a [routerLink]="['/', 'components', 'menu', 'zh']">用户中心</a>
+              <span>用户中心</span>
             </li>
             <li nz-menu-item nzMatchRouter>
               <i nz-icon nzType="usergroup-add"></i>
-              <a [routerLink]="['/', 'components', 'menu', 'zh']">角色管理</a>
+              <span>角色管理</span>
             </li>
             <li nz-menu-item nzMatchRouter>
               <i nz-icon nzType="apartment"></i>
@@ -30,8 +30,7 @@
         </li>
         <li nz-menu-item nzMatchRouter (click)="select('setting')">
           <i nz-icon nzType="setting"></i>
-          <span [routerLink]="['/setting']" [queryParams]="{ id: 1, name: 'hello', age: 20 }"
-            routerLinkActive="active">设置</span>
+          <span routerLinkActive="active">设置</span>
         </li>
       </ul>
     </nz-sider>

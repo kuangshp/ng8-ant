@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 
 // 获取环境配置项目
 import { environment } from './../../environments/environment';
-import { storage } from '@utils';
+import { storage } from '@app/utils';
 import { authToken } from '../config';
 
 @Injectable()

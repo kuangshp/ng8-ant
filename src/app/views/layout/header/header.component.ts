@@ -4,7 +4,7 @@ import { AppStoreModule } from '@app/store/store.module';
 import { getCurrentCollapsed } from '@app/store/selectors';
 import { toggleMenu } from '@app/store/actions';
 import { Router } from '@angular/router';
-import { storage } from '@utils'
+import { storage } from '@app/utils'
 
 @Component({
   selector: 'app-header',
