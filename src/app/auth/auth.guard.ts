@@ -7,7 +7,7 @@ import { authToken } from '../config';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private router: Router) { }
+  constructor (private router: Router) { }
   /**
    * 导航需要进入的页面
    * @param next 下一个

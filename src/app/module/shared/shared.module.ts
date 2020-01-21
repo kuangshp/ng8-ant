@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { AppStoreModule } from '../store/store.module';
+import { AppStoreModule } from '../../store/store.module';
 
 @NgModule({
   declarations: [],

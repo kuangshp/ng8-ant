@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from './../../../environments/environment';
 
 interface IobjectType {
   [propsName: string]: any;
 }
+
 @Injectable({
   providedIn: 'root'
 })
-export class RequestService {
-  constructor(private readonly http: HttpClient) { }
+export class BaseService {
+
+  constructor (private readonly http: HttpClient) {}
 
   /**
    * 封装一个统一的get请求方法
