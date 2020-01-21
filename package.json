@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production",
-    "dev": "ng build --configuration=development",
-    "uat": "ng build --configuration=uat",
-    "fat": "ng build --configuration=fat",
+    "build:prod": "ng build --configuration=production",
+    "build:dev": "ng build --configuration=development",
+    "build:uat": "ng build --configuration=uat",
+    "build:fat": "ng build --configuration=fat",
     "test": "ng test",
     "lint": "ng lint --fix",
     "e2e": "ng e2e"
