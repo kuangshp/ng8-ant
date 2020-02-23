@@ -1,27 +1,17 @@
-# Ng8Ant
+## 使用angular8+ng-zorro-antd搭建一个后台管理系统，主要页面显示
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
+* 1、本项目中使用到的后端接口[nestjs开发的后端](https://github.com/kuangshp/nestjs-mysql-api)
 
-## Development server
+* 2、登录页面
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  ![image-20200223202251862](README.assets/image-20200223202251862.png)
 
-## Code scaffolding
+* 3、用户中心
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  ![image-20200223202115787](README.assets/image-20200223202115787.png)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+* 4、给角色分配权限
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  ![image-20200223202231685](README.assets/image-20200223202231685.png)
