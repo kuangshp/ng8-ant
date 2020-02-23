@@ -7,37 +7,31 @@
   <nz-layout class="content">
     <!-- 左侧导航 -->
     <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-menu-item>
-          <i nz-icon nzType="file"></i>
-          <span>文件中心</span>
-        </li>
-        <li nz-submenu nzTitle="系统管理" nzIcon="team">
-          <ul>
-            <li nz-menu-item nzMatchRouter>
-              <i nz-icon nzType="user"></i>
-              <span>用户中心</span>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <i nz-icon nzType="usergroup-add"></i>
-              <span>角色管理</span>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <i nz-icon nzType="apartment"></i>
-              <span>资源管理</span>
-            </li>
-          </ul>
-        </li>
-        <li nz-menu-item nzMatchRouter (click)="select('setting')">
-          <i nz-icon nzType="setting"></i>
-          <span routerLinkActive="active">设置</span>
-        </li>
+      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed" style="height: calc(100% - 40px);overflow: auto;">
+        <!-- 循环生成左侧导航开始 -->
+        <ng-container *ngFor="let menu of menusList">
+          <!-- 一级菜单(没有子菜单的) -->
+          <li nz-menu-item *ngIf="!menu.children || menu.children.length == 0" (click)="selectedMenu(menu)">
+            <i nz-icon [nzType]="menu.icon"></i>
+            <span>{{menu.name}}</span>
+          </li>
+          <!-- 一级菜单(有子菜单的) -->
+          <li nz-submenu *ngIf="menu.children && menu.children.length" [nzTitle]="menu.name" [nzIcon]="menu.icon">
+            <ul>
+              <li nz-menu-item nzMatchRouter *ngFor="let item of menu.children" (click)="selectedMenu(item)">
+                <i nz-icon [nzType]="item.icon"></i>
+                <span>{{item.name}}</span>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+        <!-- 循环生成左侧导航结束 -->
       </ul>
     </nz-sider>
     <!-- 右侧内容区域开始 -->
     <nz-layout>
       <!-- 选项卡导航 -->
-      <app-tabset></app-tabset>
+      <app-tabset [sourceMenus]="sourceMenus" *ngIf="sourceMenus"></app-tabset>
       <nz-content>
         <div class="inner-content">
           <router-outlet [ngStyle]="{'height':'100%'}"></router-outlet>

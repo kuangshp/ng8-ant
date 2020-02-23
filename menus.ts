@@ -1,42 +1,55 @@
 export default {
-  code: 200,
+  code: 0,
   message: '请求成功',
   result: [
     {
-      id: 1,
-      name: '文件中心',
-      parentId: -1,
-      url: 'file',
-    },
-    {
       id: 2,
-      name: '系统管理',
+      url: null,
+      sort: 4,
+      icon: 'team',
       parentId: -1,
-      url: 'system',
+      name: '系统管理'
     },
     {
       id: 3,
-      name: '用户中心',
+      url: '/system/user',
+      sort: 3,
+      icon: 'user',
       parentId: 2,
-      url: 'user',
+      name: '用户中心'
     },
     {
       id: 4,
-      name: '角色管理',
+      url: '/system/role',
+      sort: 4,
+      icon: 'usergroup-add',
       parentId: 2,
-      url: 'role',
+      name: '角色管理'
     },
     {
       id: 5,
-      name: '资源管理',
+      url: '/system/access',
+      sort: 5,
+      icon: 'apartment',
       parentId: 2,
-      url: 'resources',
+      name: '资源管理'
     },
     {
       id: 6,
-      name: '设置',
+      url: '/setting',
+      sort: 15,
+      icon: 'setting',
       parentId: -1,
-      url: 'setting',
+      name: '设置'
     },
-  ],
-};
+    {
+      id: 10,
+      url: '/file',
+      sort: 1,
+      icon: 'file',
+      parentId: -1,
+      name: '文件中心'
+    },
+  ]
+}
+

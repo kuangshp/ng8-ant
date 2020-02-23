@@ -1,13 +1,37 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SystemComponent } from './system.component';
+import { UserComponent } from './user/user.component';
+import { RoleComponent } from './role/role.component';
+import { AccessComponent } from './access/access.component';
 
 
 const routes: Routes = [
   {
-    path: '',
-    component: SystemComponent
+    path: 'user',
+    component: UserComponent,
+    data: {
+      title: '用户中心'
+    }
   },
+  {
+    path: 'role',
+    component: RoleComponent,
+    data: {
+      title: '角色管理',
+    }
+  },
+  {
+    path: 'access',
+    component: AccessComponent,
+    data: {
+      title: '资源管理',
+    }
+  },
+  {
+    path: '**',
+    redirectTo: 'user',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

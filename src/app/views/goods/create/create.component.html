@@ -1,0 +1,134 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm, $event)">
+  <nz-tabset>
+    <nz-tab nzTitle="基本信息">
+      <div nz-row nzGutter="16">
+        <div nz-col class="gutter-row" nzSpan="24">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzRequired>商品名称</nz-form-label>
+            <nz-form-control [nzSpan]="20">
+              <input nz-input formControlName="title" placeholder="请输入商品名称" type="text" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzRequired>商品分类</nz-form-label>
+            <nz-form-control nzSpan="20">
+              <nz-select name="select-validate" nzShowSearch nzAllowClear [ngModel]="categoryId"
+                formControlName="categoryId">
+                <nz-option *ngFor="let category of categoryList" [nzValue]="category.id" [nzLabel]="category.title">
+                </nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">商品的二级名称</nz-form-label>
+            <nz-form-control nzSpan="20">
+              <input nz-input formControlName="subTitle" placeholder="请输入商品二级名称" type="text" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzRequired>商品主图</nz-form-label>
+            <nz-form-control nzSpan="20">
+              <!-- <input nz-input formControlName="goodsImg" placeholder="请输入商品主图" type="text" /> -->
+              <div class="clearfix">
+                <nz-upload [nzAction]="uploadImageAction" nzListType="picture-card" [(nzFileList)]="fileList"
+                  [nzShowButton]="fileList.length < 1" [nzShowUploadList]="showUploadList" [nzPreview]="handlePreview"
+                  (nzChange)="change($event)">
+                  <i nz-icon nzType="plus"></i>
+                  <div class="ant-upload-text">上传主图</div>
+                </nz-upload>
+                <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+                  (nzOnCancel)="previewVisible = false">
+                  <ng-template #modalContent>
+                    <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+                  </ng-template>
+                </nz-modal>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">销售价格</nz-form-label>
+            <nz-form-control nzSpan="20">
+              <input nz-input formControlName="shopPrice" placeholder="请输入销售价格" type="text" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">原价</nz-form-label>
+            <nz-form-control nzSpan="20">
+              <input nz-input formControlName="marketPrice" placeholder="请输入商品原价" type="text" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">数量</nz-form-label>
+            <nz-form-control nzSpan="20">
+              <nz-input-number formControlName="count" [nzMin]="1" [nzStep]="1" style="width: 100%;"
+                placeholder="请输入商品数量">
+              </nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">限售数量</nz-form-label>
+            <nz-form-control nzSpan="20">
+              <nz-input-number formControlName="mostNum" [nzMin]="1" [nzStep]="1" style="width: 100%;"
+                placeholder="请输入最大下单数量">
+              </nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">是否推荐</nz-form-label>
+            <nz-form-control [nzSpan]="20">
+              <nz-select name="select-validate" [ngModel]="isBest" formControlName="isBest">
+                <nz-option nzValue="0" nzLabel="不推荐"></nz-option>
+                <nz-option nzValue="1" nzLabel="推荐"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">是否热销</nz-form-label>
+            <nz-form-control [nzSpan]="20">
+              <nz-select name="select-validate" [ngModel]="isHot" formControlName="isHot">
+                <nz-option nzValue="0" nzLabel="不是热销"></nz-option>
+                <nz-option nzValue="1" nzLabel="热销"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">是否新品</nz-form-label>
+            <nz-form-control [nzSpan]="20">
+              <nz-select name="select-validate" [ngModel]="isNew" formControlName="isNew">
+                <nz-option nzValue="0" nzLabel="不是新品"></nz-option>
+                <nz-option nzValue="1" nzLabel="新品"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">排序</nz-form-label>
+            <nz-form-control nzSpan="20">
+              <nz-input-number formControlName="sort" [nzMin]="1" [nzStep]="1" style="width: 100%;">
+              </nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="4">状态</nz-form-label>
+            <nz-form-control [nzSpan]="20">
+              <nz-select name="select-validate" [ngModel]="status" formControlName="status">
+                <nz-option nzValue="0" nzLabel="禁用"></nz-option>
+                <nz-option nzValue="1" nzLabel="可用"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="详细信息">
+      <div [froalaEditor]="froalaEditorOptions" [(froalaModel)]="editorContent"></div>
+    </nz-tab>
+  </nz-tabset>
+  <button nz-button [nzType]="'primary'" style="width: 100%; margin-top: 30px;">提交</button>
+</form>

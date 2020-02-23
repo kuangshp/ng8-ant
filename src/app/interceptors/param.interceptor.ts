@@ -13,11 +13,16 @@ import { tap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { storage } from '@app/utils';
 import { authToken } from '../config';
+import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Injectable()
 export class ParamInterceptor implements HttpInterceptor {
   private baseUrl: string;
-  constructor () {
+  constructor (
+    private readonly router: Router,
+    private readonly modalService: NzModalService
+  ) {
     this.baseUrl = environment.baseUrl
   }
 
@@ -28,36 +33,64 @@ export class ParamInterceptor implements HttpInterceptor {
     // 处理url地址的问题
     let url = this._url(req.url);
     // 过滤不需要token的请求
-    if (this.ignoreToken(url)) {
+    if (this.ignoreToken(req.url)) {
       req = req.clone({ url });
     } else {
       // 如果本地获取不到token就重定向到登录页面
       if (!storage.getItem(authToken)) {
-        console.log('没token');
+        console.log('没token跳转到登录页面');
+        this.router.navigateByUrl('/login');
       } else {
-        // 设置请求头
-        req = req.clone({
-          url,
-          headers: req.headers
-            .set('token', '11221')
-            .set('token1', 'aaa')
-            .set('Content-Type', 'application/json; charset=UTF-8')
-        });
+        // 上传文件的时候只能加token
+        if (url.includes('upload_image')) {
+          req = req.clone({
+            url,
+            headers: req.headers
+              .set('token', JSON.parse(storage.getItem(authToken)))
+          })
+        } else {
+          // 设置请求头
+          req = req.clone({
+            url,
+            headers: req.headers
+              .set('token', JSON.parse(storage.getItem(authToken)))
+              .set('Content-Type', 'application/json; charset=UTF-8')
+          });
+        }
+
       }
     }
-
     return next.handle(req).pipe(
       tap(
         (event: any) => {
           if (event instanceof HttpResponse) {
-            console.log(event);
-            if (event.status >= 500) {
-              // 跳转错误页面
+            const status = event.status;
+            if (status >= 200 && status < 300) {
+              console.log('请求成功');
             }
           }
         },
         error => {
           // token过期 服务器错误等处理
+          const status = error.status;
+          if (status >= 500) {
+            this.modalService.error({
+              nzTitle: '<h4>错误提示</h4>',
+              nzContent: '服务器端错误,请求重新刷新页面',
+              nzOnOk: () => window.location.reload(),
+            });
+          } else if (status == 401) {
+            this.modalService.confirm({
+              nzTitle: '<h4>权限提示</h4>',
+              nzContent: '<b>当前操作没权限,是否跳转到主页</b>',
+              nzOnOk: () => this.router.navigateByUrl('/home')
+            });
+          } else if (status == 429) {
+            this.modalService.warning({
+              nzTitle: '访问受限提示',
+              nzContent: '你访问过于频繁,等会访问',
+            });
+          }
         }
       )
     );

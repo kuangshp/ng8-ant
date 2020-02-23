@@ -1,9 +1,10 @@
 <div class="tabnav">
-  <nz-tabset [nzType]="'line'" [nzSize]="'small'" [(nzSelectedIndex)]="selectedIndex">
-    <nz-tab *ngFor="let tab of activeTabs;index as i" (nzClick)="selectedTabMenu(tab)" [nzTitle]="titleTemplate">
+  <nz-tabset [nzType]="'line'" [nzSize]="'small'" [(nzSelectedIndex)]="currentSelectedIndex" nzTabBarGutter="0"
+    [nzTabBarStyle]="tabBarStyle">
+    <nz-tab *ngFor="let tab of tabsList;index as i" (nzClick)="selectedTabMenu(tab)" [nzTitle]="titleTemplate">
       <ng-template #titleTemplate>
-        <div [ngClass]="{'tab-home':i===0}">
-          <i *ngIf="tab.icon!==''" nz-icon nzType="home" nzTheme="outline" [ngClass]="tab.icon"></i>
+        <div style="margin:0;" [ngClass]="{'tab-home':i===0}">
+          <i *ngIf="tab.icon!==''" nz-icon [nzType]="tab.icon" [ngClass]="tab.icon"></i>
           {{ tab.name }}
           <i *ngIf="i>0" nz-icon type="close" class="ant-tabs-close-x" (click)="closeTabNav(tab)"></i>
         </div>

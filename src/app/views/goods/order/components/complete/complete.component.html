@@ -1,0 +1,57 @@
+<nz-table #nestedTable [nzData]="listOfParentData" nzSize="default" [nzPageSizeOptions]="nzPageSizeOptions"
+  nzShowQuickJumper="true" nzShowSizeChanger="true" nzHideOnSinglePage="true"
+  (nzPageIndexChange)="changePageNumber($event)" (nzPageSizeChange)="changePageSize($event)" nzFrontPagination="false"
+  [nzTotal]="tableTotal" [nzPageSize]="pageSize" [nzPageIndex]="pageNumber">
+  <thead>
+    <tr>
+      <th nzShowExpand></th>
+      <th nzWidth="180" nzAlign="center">订单号</th>
+      <th nzWidth="180" nzAlign="center">就餐人数</th>
+      <th nzWidth="180" nzAlign="center">桌子号</th>
+      <th nzWidth="180" nzAlign="center">订单类型</th>
+      <th nzWidth="180" nzAlign="center">备注信息</th>
+      <th nzWidth="180" nzAlign="center">创建时间</th>
+      <th nzWidth="180" nzAlign="center">最后更新时间</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+      <tr>
+        <td nzShowExpand [(nzExpand)]="data.expand" (nzExpandChange)="expand($event, data)"></td>
+        <td nzAlign="center">{{ data.orderNo }}</td>
+        <td nzAlign="center">{{ data.personNum }}</td>
+        <td nzAlign="center">{{ data.tableId }}</td>
+        <td nzAlign="center">
+          <span *ngIf="data.goodsType=='-1'">退货</span>
+          <span *ngIf="data.goodsType=='1'">下单</span>
+          <span *ngIf="data.goodsType=='0'">补单</span>
+        </td>
+        <td nzAlign="right">{{ data.remark }}</td>
+        <td nzAlign="center">{{ data.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td nzAlign="center">{{ data.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+      </tr>
+      <tr [nzExpand]="data.expand">
+        <td></td>
+        <td colspan="7">
+          <nz-table #innerTable [nzData]="listOfChildrenData" nzSize="middle"
+            [nzShowPagination]="false" [nzLoading]="loadData">
+            <thead>
+              <tr>
+                <th nzAlign="center">商品名称</th>
+                <th nzWidth="100" nzAlign="center">下单价格</th>
+                <th nzWidth="80" nzAlign="center">数量</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of innerTable.data">
+                <td nzAlign="left">{{ data.title }}</td>
+                <td nzAlign="center">{{ data.shopPrice }}</td>
+                <td nzAlign="center">{{ data.num}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </td>
+      </tr>
+    </ng-template>
+  </tbody>
+</nz-table>

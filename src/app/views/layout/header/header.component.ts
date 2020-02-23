@@ -5,6 +5,10 @@ import { getCurrentCollapsed } from '@app/store/selectors';
 import { toggleMenu } from '@app/store/actions';
 import { Router } from '@angular/router';
 import { storage } from '@app/utils'
+import { NzModalService } from 'ng-zorro-antd';
+import { ModifyPasswordComponent } from '../modify-password/modify-password.component';
+import { CommonService } from '@app/services/tools/common/common.service';
+import { userInfo } from '@app/config';
 
 @Component({
   selector: 'app-header',
@@ -12,14 +16,20 @@ import { storage } from '@app/utils'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  public isCollapsed: boolean = false;
-  constructor (private store$: Store<AppStoreModule>, private router: Router) { }
+  username: string = '';
+  isCollapsed: boolean = false;
+  constructor (
+    private store$: Store<AppStoreModule>,
+    private router: Router,
+    private readonly modalService: NzModalService,
+    private readonly commentService: CommonService,
+  ) { }
 
   ngOnInit() {
     this.store$.pipe(select('isCollapsed' as any), select(getCurrentCollapsed)).subscribe(item => {
       this.isCollapsed = item;
     })
+    this.username = JSON.parse(storage.getItem(userInfo)).username;
   }
 
   toggleMenu(): void {
@@ -28,11 +38,27 @@ export class HeaderComponent implements OnInit {
 
   // 修改密码
   public modifyPassword(): void {
-    console.log('修改密码');
+    this.modalService.create({
+      nzTitle: '修改密码',
+      nzContent: ModifyPasswordComponent,
+      nzOnOk: (contentComponentInstance) => {
+        return contentComponentInstance.handleOk();
+      },
+    })
   }
 
   // 个人信息
   public userInfo(): void {
+    this.commentService.event('selectedMenu', {
+      id: -1,
+      url: "/system/user_info",
+      icon: "solution",
+      name: "个人中心",
+      select: true,
+      enabled: false,
+      close: true,
+      refresh: "Y",
+    });
     console.log('个人信息');
   }
 

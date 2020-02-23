@@ -5,6 +5,9 @@
     background: #fff;
     padding: 0;
   }
+  .content{
+    overflow: hidden;
+  }
   nz-content {
     margin: 0 16px;
   }
@@ -25,6 +28,7 @@
     background: #fff;
     min-height: 360px;
     height: 100%;
+    overflow: auto;
   }
 
   nz-footer {

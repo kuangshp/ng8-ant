@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng8-ant": {
+    "order-admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng8-ant",
+            "outputPath": "dist/order-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -96,18 +96,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng8-ant:build"
+            "browserTarget": "order-admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng8-ant:build:production"
+              "browserTarget": "order-admin:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng8-ant:build"
+            "browserTarget": "order-admin:build"
           }
         },
         "test": {
@@ -149,16 +149,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ng8-ant:serve"
+            "devServerTarget": "order-admin:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ng8-ant:serve:production"
+              "devServerTarget": "order-admin:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ng8-ant"
+  "defaultProject": "order-admin"
 }

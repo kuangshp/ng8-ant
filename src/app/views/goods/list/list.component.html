@@ -1,0 +1,106 @@
+<div class="goods-category">
+  <div class="operate">
+    <button nz-button [nzType]="'primary'" (click)="addGoods()">
+      新增商品
+    </button>
+  </div>
+  <nz-table #basicTable [nzData]="goodsList" nzSize="default" nzBordered="true" [nzNoResult]="customTpl"
+    [nzLoading]="loadData" [nzPageSizeOptions]="nzPageSizeOptions" nzShowQuickJumper="true" nzShowSizeChanger="true"
+    nzHideOnSinglePage="true" (nzPageIndexChange)="changePageNumber($event)" (nzPageSizeChange)="changePageSize($event)"
+    nzFrontPagination="false" [nzScroll]="tableScroll" [nzTotal]="tableTotal" [nzPageSize]="pageSize"
+    [nzPageIndex]="pageNumber" class="table-scroll">
+    <thead>
+      <tr>
+        <th nzWidth="150px" nzAlign="left" nzCustomFilter>
+          商品名称
+          <i nz-th-extra class="ant-table-filter-icon" nz-icon nz-dropdown #dropdown="nzDropdown" nzType="search"
+            [nzDropdownMenu]="menu" [class.ant-table-filter-open]="dropdown.nzVisible" nzTrigger="click"
+            nzPlacement="bottomRight" [nzClickHide]="false" nzTableFilter></i>
+        </th>
+        <th nzWidth="130px" nzAlign="center" nzShowFilter [nzFilters]="listOfCategory"
+          (nzFilterChange)="filterCategory($event)">分类</th>
+        <th nzWidth="150px" nzAlign="left">二级标题</th>
+        <th nzWidth="150px" nzAlign="center">主图</th>
+        <th nzWidth="80px" nzAlign="right">销售价</th>
+        <th nzWidth="70px" nzAlign="right">原价</th>
+        <th nzWidth="90px" nzAlign="right">库存</th>
+        <th nzWidth="100px" nzAlign="center">限购数</th>
+        <th nzWidth="65px" nzAlign="center">推荐</th>
+        <th nzWidth="65px" nzAlign="center">热销</th>
+        <th nzWidth="65px" nzAlign="center">新品</th>
+        <th nzWidth="100px" nzAlign="center">排序</th>
+        <th nzWidth="80px" nzAlign="center" nzShowFilter [nzFilterMultiple]="false" [nzFilters]="listOfStatus"
+          (nzFilterChange)="filterStatus($event)">状态</th>
+        <th nzWidth="180px" nzAlign="center">创建时间</th>
+        <th nzWidth="180px" nzAlign="center">更新时间</th>
+        <th nzAlign="center">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="left">{{ data.title }}</td>
+        <td nzAlign="center">{{ data.categoryTitle }}</td>
+        <td nzAlign="left">{{ data.subTitle }}</td>
+        <td nzAlign="left">
+          <img src="{{data.goodsImg}}" style="width:120px; height:50px;" />
+        </td>
+        <td nzAlign="right">{{ data.shopPrice }}</td>
+        <td nzAlign="right">{{ data.marketPrice }}</td>
+        <td nzAlign="right">{{ data.count }}</td>
+        <td nzAlign="center">{{ data.mostNum }}</td>
+        <td nzAlign="center">
+          <img src="/assets/images/yes.gif" *ngIf="data.isBest==1" />
+          <img src="/assets/images/no.gif" *ngIf="data.isBest==0" />
+        </td>
+        <td nzAlign="center">
+          <img src="/assets/images/yes.gif" *ngIf="data.isHot==1" />
+          <img src="/assets/images/no.gif" *ngIf="data.isHot==0" />
+        </td>
+        <td nzAlign="center">
+          <img src="/assets/images/yes.gif" *ngIf="data.isNew==1" />
+          <img src="/assets/images/no.gif" *ngIf="data.isNew==0" />
+        </td>
+        <td nzAlign="center">{{ data.sort }}</td>
+        <td nzAlign="center">
+          <img src="/assets/images/yes.gif" *ngIf="data.status==1" />
+          <img src="/assets/images/no.gif" *ngIf="data.status==0" />
+        </td>
+        <td nzAlign="center">{{ data.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td nzAlign="center">{{ data.updatedAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td nzAlign="center">
+          <button nz-button nzType="default" (click)="editGoods(data)">
+            <i nz-icon nzType="edit" nzTheme="outline"></i>修改</button>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button nz-button nzType="danger" (click)="deleteRowData(data)">
+            <i nz-icon nzType="delete" nzTheme="outline"></i>删除</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<!-- 没有数据的展示 -->
+<ng-template #customTpl let-name>
+  <div style="text-align: center;">
+    <nz-empty [nzNotFoundImage]="'./assets/images/not_data.png'" [nzNotFoundContent]="contentTpl"
+      [nzNotFoundFooter]="footerTpl">
+      <ng-template #contentTpl>
+        <span>暂无数据</span>
+      </ng-template>
+      <ng-template #footerTpl>
+        <!-- <button nz-button nzType="primary" (click)="addGoods()">添加数据</button> -->
+      </ng-template>
+    </nz-empty>
+  </div>
+</ng-template>
+
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="search-box">
+    <input type="text" nz-input placeholder="请输入关键词" [(ngModel)]="searchValue" />
+    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+      搜索
+    </button>
+    <button nz-button nzSize="small" (click)="reset()">重置</button>
+  </div>
+</nz-dropdown-menu>

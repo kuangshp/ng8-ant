@@ -7,7 +7,7 @@ import { environment } from './../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng8-ant';
+  title = 'order-admin';
   public currentUrl() {
     console.log('点击了');
     console.log(environment.baseUrl);

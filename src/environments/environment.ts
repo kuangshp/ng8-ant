@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://a.itying.com',
-  ignoreToken: ['login', 'logout']
+  baseUrl: 'http://localhost:3000/api/v1/',
+  ignoreToken: ['login', 'logout'],
+  parentId: 'admin-web'
 };
 
 /*

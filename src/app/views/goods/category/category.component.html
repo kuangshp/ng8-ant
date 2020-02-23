@@ -1,0 +1,59 @@
+<div class="goods-category">
+  <div class="operate">
+    <button nz-button [nzType]="'primary'" (click)="addCategory()">
+      新增分类
+    </button>
+  </div>
+  <nz-table #basicTable [nzData]="categoryListData" nzSize="default" nzBordered="true" [nzNoResult]="customTpl"
+    [nzLoading]="loadData" [nzPageSizeOptions]="nzPageSizeOptions" nzShowQuickJumper="true" nzShowSizeChanger="true"
+    nzHideOnSinglePage="true" (nzPageIndexChange)="changePageNumber($event)" (nzPageSizeChange)="changePageSize($event)"
+    nzFrontPagination="false" [nzScroll]="tableScroll" [nzTotal]="tableTotal" [nzPageSize]="pageSize"
+    [nzPageIndex]="pageNumber" class="table-scroll">
+    <thead>
+      <tr>
+        <th nzWidth="150px" nzAlign="left">分类名称</th>
+        <th nzWidth="130px" nzAlign="center">分类描素</th>
+        <th nzWidth="130px" nzAlign="center">排序</th>
+        <th nzWidth="80px" nzAlign="center">状态</th>
+        <th nzWidth="180px" nzAlign="center">创建时间</th>
+        <th nzWidth="180px" nzAlign="center">更新时间</th>
+        <th nzAlign="center">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="left">{{ data.title }}</td>
+        <td nzAlign="center">{{ data.description }}</td>
+        <td nzAlign="center">{{ data.sort }}</td>
+        <td nzAlign="center">
+          <img src="/assets/images/yes.gif" *ngIf="data.status==1" />
+          <img src="/assets/images/no.gif" *ngIf="data.status==0" />
+        </td>
+        <td nzAlign="center">{{ data.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td nzAlign="center">{{ data.updatedAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td nzAlign="center">
+          <button nz-button nzType="default" (click)="editCategory(data)">
+            <i nz-icon nzType="edit" nzTheme="outline"></i>修改</button>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button nz-button nzType="danger" (click)="deleteRowData(data)">
+            <i nz-icon nzType="delete" nzTheme="outline"></i>删除</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<!-- 没有数据的展示 -->
+<ng-template #customTpl let-name>
+  <div style="text-align: center;">
+    <nz-empty [nzNotFoundImage]="'./assets/images/not_data.png'" [nzNotFoundContent]="contentTpl"
+      [nzNotFoundFooter]="footerTpl">
+      <ng-template #contentTpl>
+        <span>暂无数据</span>
+      </ng-template>
+      <ng-template #footerTpl>
+        <button nz-button nzType="primary" (click)="addCategory()">添加数据</button>
+      </ng-template>
+    </nz-empty>
+  </div>
+</ng-template>
